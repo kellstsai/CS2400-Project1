@@ -1,8 +1,5 @@
-/**
-    A class of bags whose entries are stored in a fixed-size array.
-    @author Frank M. Carrano, Timothy M. Henry
-    @version 5.0
-*/
+//hello world
+//cries
 public final class ArrayBag<T> implements BagInterface<T>
 {
 	private final T[] bag; 
