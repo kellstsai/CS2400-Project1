@@ -9,7 +9,7 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
 {
 	private T[] bag; // Cannot be final due to doubling
 	private int numberOfEntries;
-   private boolean integrityOK = false;
+	private boolean integrityOK = false;
 	private static final int DEFAULT_CAPACITY = 25; // Initial capacity of bag
 	private static final int MAX_CAPACITY = 10000;
 
@@ -222,6 +222,38 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
       if (!integrityOK)
          throw new SecurityException ("ArrayBag object is corrupt.");
    } // end checkintegrity
+
+   //BagInterface<String> everything = bag1.union(bag2); 
+   @Override
+	public BagInterface<T> union(BagInterface<T> bag) {
+		BagInterface<T> addition = new ResizableArrayBag<>();
+		T[] bag1 = this.toArray();	//first bag originally calling the method
+			//System.out.println(Arrays.toString(bag1));
+		T[] bag2 = bag.toArray();	//second bag that is being placed in the parameter
+			//System.out.println(Arrays.toString(bag2));
+		
+		for(T var: bag1) {	//for(T var; var < bag; var++)
+			addition.add(var);
+		}	//adding all of bag 1 into the new bag first
+		for(T var: bag2) {
+			addition.add(var);
+		}	//adding all of bag 2 into the bag afterwards
+		
+		return addition;
+		//since only 2 separate for-each loops, O(n)
+	} // end union
+	
+	@Override
+	public BagInterface<T> intersection(BagInterface<T> bag) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public BagInterface<T> difference(BagInterface<T> bag) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 } // end ResizableArrayBag
 
 /*
@@ -281,5 +313,4 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
  
  The bag contains 0 string(s), as follows:
  */
-
 
