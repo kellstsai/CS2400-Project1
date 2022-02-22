@@ -8,6 +8,7 @@ import java.util.Arrays;
 public final class ResizableArrayBag<T> implements BagInterface<T>
 {
 	private T[] bag; // Cannot be final due to doubling
+		//means we're getting 2 bags
 	private int numberOfEntries;
 	private boolean integrityOK = false;
 	private static final int DEFAULT_CAPACITY = 25; // Initial capacity of bag
@@ -223,19 +224,30 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
          throw new SecurityException ("ArrayBag object is corrupt.");
    } // end checkintegrity
 
+   public static <T> void copy(T[] original, T[] duplicate) {
+	   for(int i = 0; i < original.length; i++) {
+		   duplicate[i] = original[i];
+	   }	//copying each element of the original onto the 2nd
+   }	//end copy
+   
    //BagInterface<String> everything = bag1.union(bag2); 
    @Override
 	public BagInterface<T> union(BagInterface<T> bag) {
 		BagInterface<T> addition = new ResizableArrayBag<>();
-		T[] bag1 = this.toArray();	//first bag originally calling the method
-			//System.out.println(Arrays.toString(bag1));
+		T[] bag0 = this.toArray();	//first bag originally calling the method
+			//System.out.println("bag0: " + Arrays.toString(bag0));
+		T[] bag1 = bag0;	//new bag pointing to the 1st bag
+			copy(bag0, bag1);	//copying the old elements rather than having them point to the 1st bag
+
 		T[] bag2 = bag.toArray();	//second bag that is being placed in the parameter
-			//System.out.println(Arrays.toString(bag2));
+			//System.out.println("bag2: " + Arrays.toString(bag2));
+		T[] bag3 = bag2;	//new bag to pointing to the 2nd bag
+			copy(bag2, bag3);	//copying the old elements
 		
 		for(T var: bag1) {	//for(T var; var < bag; var++)
 			addition.add(var);
 		}	//adding all of bag 1 into the new bag first
-		for(T var: bag2) {
+		for(T var: bag3) {
 			addition.add(var);
 		}	//adding all of bag 2 into the bag afterwards
 		
