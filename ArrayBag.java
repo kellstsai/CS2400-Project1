@@ -1,5 +1,4 @@
-//hello world
-//cries
+
 public final class ArrayBag<T> implements BagInterface<T>
 {
 	private final T[] bag; 
