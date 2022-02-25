@@ -252,8 +252,7 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
 	
 	@Override
 	public BagInterface<T> intersection(BagInterface<T> bag) {
-		// TODO Auto-generated method stub
-		return null;
+		
 	}
 	
 	@Override
@@ -262,22 +261,18 @@ public final class ResizableArrayBag<T> implements BagInterface<T>
 		T[] other = this.toArray(); 
 		for (int i = 0; i < numberOfEntries; i++) {
 			T conclusion = other[i]; 
-			while (!theBag.contains(conclusion)) {
-				if(!theBag.contains(conclusion)) {
+			if (!theBag.contains(conclusion)) {
 				int difference; 
 				difference = getFrequencyOf(conclusion) - bag.getFrequencyOf(conclusion); 
 
 				for (int end = 0; end < difference; end++) {
 					theBag.add(conclusion);
 				}
+			}		
 			}
-			else {
-				System.out.println("There is an error.");
-			}
+			return theBag; 
 
-	}
-}
-		return theBag;
+		
 	}
 } // end ResizableArrayBag
 

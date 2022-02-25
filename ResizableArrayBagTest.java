@@ -3,20 +3,33 @@
     @author Timothy M. Henry
     @version 5.0
 */
-public class ResizableArrayBagDemo
+public class ResizableArrayBagTest
 {
 	public static void main(String[] args) 
 	{
 		// A bag whose initial capacity is small
       BagInterface<String> aBag = new ResizableArrayBag<>(3);
       testIsEmpty(aBag, true);
+
+      BagInterface<String> bagOne = new ResizableArrayBag<>();
+      BagInterface<String> bagTwo = new ResizableArrayBag<>(); 
+
+      String[] bagOneInfo = {"A", "R", "E", "R", "X"};
+      String[] bagTwoInfo = {"", "T", "F", "P", "D", "A"}; 
+
+      testAdd(bagOne, bagOneInfo);
+      testAdd(bagTwo, bagTwoInfo); 
+      BagInterface<String> differencee = bagOne.difference(bagTwo); 
+      System.out.println("difference");
+      displayBag(differencee);
       
-		System.out.println("Adding to the bag more strings than its initial capacity.");
+		/** System.out.println("Adding to the bag more strings than its initial capacity.");
       String[] contentsOfBag = {"A", "D", "B", "A", "C", "A", "D"};
 		testAdd(aBag, contentsOfBag);
 
+
       testIsEmpty(aBag, false);
-      String[] testStrings2 = {"A", "B", "C", "D", "Z"};
+      BagInterface<String> testStrings2 = {"A", "B", "C", "D", "Z"};
       testFrequency(aBag, testStrings2);
       testContains(aBag, testStrings2);
 		
@@ -27,9 +40,12 @@ public class ResizableArrayBagDemo
 		System.out.println("\nClearing the bag:");
 		aBag.clear();
       testIsEmpty(aBag, true);
-		displayBag(aBag);
-	} // end main
-	
+		displayBag(aBag); */
+      
+     
+
+   }
+
    // Tests the method add.
 	private static void testAdd(BagInterface<String> aBag, String[] content)
 	{
@@ -122,6 +138,8 @@ public class ResizableArrayBagDemo
 		
 		System.out.println();
 	} // end displayBag
+
+
 } // end ResizableArrayBagDemo
 /*
 
